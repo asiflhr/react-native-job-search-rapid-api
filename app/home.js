@@ -1,18 +1,18 @@
-import { useState } from "react";
-import { SafeAreaView, ScrollView, View } from "react-native";
-import { Stack, useRouter } from "expo-router";
+import { useState } from 'react'
+import { SafeAreaView, ScrollView, View } from 'react-native'
+import { Stack, useRouter } from 'expo-router'
 
-import { COLORS, icons, images, SIZES } from "../constants";
+import { COLORS, icons, images, SIZES } from '../constants'
 import {
   Nearbyjobs,
   Popularjobs,
   ScreenHeaderBtn,
   Welcome,
-} from "../components";
+} from '../components'
 
 const Home = () => {
   const router = useRouter()
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('')
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -26,7 +26,7 @@ const Home = () => {
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={images.profile} dimension='100%' />
           ),
-          headerTitle: "",
+          headerTitle: '',
         }}
       />
 
@@ -52,7 +52,7 @@ const Home = () => {
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

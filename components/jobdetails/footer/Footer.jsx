@@ -1,7 +1,7 @@
-import { View, Text, TouchableOpacity, Image, Linking } from "react-native";
+import { View, Text, TouchableOpacity, Image, Linking } from 'react-native'
 
-import styles from "./footer.style";
-import { icons } from "../../../constants";
+import styles from './footer.style'
+import { icons } from '../../../constants'
 
 const Footer = ({ url }) => {
   return (
@@ -21,7 +21,7 @@ const Footer = ({ url }) => {
         <Text style={styles.applyBtnText}>Apply for job</Text>
       </TouchableOpacity>
     </View>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

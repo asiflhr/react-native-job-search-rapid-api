@@ -1,5 +1,5 @@
-import { Stack, useRouter, useSearchParams } from "expo-router";
-import { useCallback, useState } from "react";
+import { Stack, useRouter, useSearchParams } from 'expo-router'
+import { useCallback, useState } from 'react'
 import {
   View,
   Text,
@@ -7,7 +7,7 @@ import {
   ScrollView,
   ActivityIndicator,
   RefreshControl,
-} from "react-native";
+} from 'react-native'
 
 import {
   Company,
@@ -16,57 +16,54 @@ import {
   JobTabs,
   ScreenHeaderBtn,
   Specifics,
-} from "../../components";
-import { COLORS, icons, SIZES } from "../../constants";
-import useFetch from "../../hook/useFetch";
+} from '../../components'
+import { COLORS, icons, SIZES } from '../../constants'
+import useFetch from '../../hook/useFetch'
 
-const tabs = ["About", "Qualifications", "Responsibilities"];
+const tabs = ['About', 'Qualifications', 'Responsibilities']
 
 const JobDetails = () => {
-  const params = useSearchParams();
-  const router = useRouter();
+  const params = useSearchParams()
+  const router = useRouter()
 
-  const { data, isLoading, error, refetch } = useFetch("job-details", {
+  const { data, isLoading, error, refetch } = useFetch('job-details', {
     job_id: params.id,
-  });
+  })
 
-  const [activeTab, setActiveTab] = useState(tabs[0]);
-  const [refreshing, setRefreshing] = useState(false);
+  const [activeTab, setActiveTab] = useState(tabs[0])
+  const [refreshing, setRefreshing] = useState(false)
 
   const onRefresh = useCallback(() => {
-    setRefreshing(true);
+    setRefreshing(true)
     refetch()
     setRefreshing(false)
-  }, []);
-
+  }, [])
 
   const displayTabContent = () => {
     switch (activeTab) {
-      case "Qualifications":
+      case 'Qualifications':
         return (
           <Specifics
             title='Qualifications'
-            points={data[0].job_highlights?.Qualifications ?? ["N/A"]}
+            points={data[0].job_highlights?.Qualifications ?? ['N/A']}
           />
-        );
+        )
 
-      case "About":
-        return (
-          <JobAbout info={data[0].job_description ?? "No data provided"} />
-        );
+      case 'About':
+        return <JobAbout info={data[0].job_description ?? 'No data provided'} />
 
-      case "Responsibilities":
+      case 'Responsibilities':
         return (
           <Specifics
             title='Responsibilities'
-            points={data[0].job_highlights?.Responsibilities ?? ["N/A"]}
+            points={data[0].job_highlights?.Responsibilities ?? ['N/A']}
           />
-        );
+        )
 
       default:
-        return null;
+        return null
     }
-  };
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite }}>
@@ -85,14 +82,16 @@ const JobDetails = () => {
           headerRight: () => (
             <ScreenHeaderBtn iconUrl={icons.share} dimension='60%' />
           ),
-          headerTitle: "",
+          headerTitle: '',
         }}
       />
 
       <>
-        <ScrollView showsVerticalScrollIndicator={false}
+        <ScrollView
+          showsVerticalScrollIndicator={false}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+          }
         >
           {isLoading ? (
             <ActivityIndicator size='large' color={COLORS.primary} />
@@ -120,10 +119,15 @@ const JobDetails = () => {
           )}
         </ScrollView>
 
-        <JobFooter url={data[0]?.job_google_link ?? 'https://careers.google.com/jobs/results/'} />
+        <JobFooter
+          url={
+            data[0]?.job_google_link ??
+            'https://careers.google.com/jobs/results/'
+          }
+        />
       </>
     </SafeAreaView>
-  );
-};
+  )
+}
 
-export default JobDetails;
+export default JobDetails
